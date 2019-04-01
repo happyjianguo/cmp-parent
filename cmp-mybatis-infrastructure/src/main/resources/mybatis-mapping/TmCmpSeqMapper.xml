@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.cmp.infrastructure.mapping.TmCmpSeqMapper">
+	<resultMap id="BaseResultMap" type="com.jjb.cmp.infrastructure.TmCmpSeq" >
+		<id column="SEQ" property="seq" jdbcType="INTEGER"/>
+		<result column="ORG" property="org" jdbcType="VARCHAR" />
+		<result column="JPA_VERSION" property="jpaVersion" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="TM_CMP_SEQ_TABLE_FIELD">ORG,SEQ,JPA_VERSION</sql>
+
+	<sql id="TABLE_SEQUENCE">SEQ_TM_CMP_SEQ_SEQ.nextval</sql>
+
+	<delete id="deleteByPrimaryKey" parameterType="map" >
+		delete from TM_CMP_SEQ
+		where 
+		SEQ = #{seq, jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jjb.cmp.infrastructure.TmCmpSeq" >
+		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
+			select <include refid="TABLE_SEQUENCE" /> from dual
+		</selectKey>
+		insert into TM_CMP_SEQ ( <include refid="TM_CMP_SEQ_TABLE_FIELD" /> )
+		values (  #{org,jdbcType=VARCHAR } , #{seq,jdbcType=INTEGER } , #{jpaVersion,jdbcType=INTEGER }
+			 
+	)
+	</insert>
+	<update id="updateNotNullByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpSeq">
+		update TM_CMP_SEQ 
+		<trim prefix="set" suffixOverrides=","> 
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },
+		</if>
+		</trim>
+		where 
+		SEQ = #{seq, jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpSeq">
+		update TM_CMP_SEQ 
+		<trim prefix="set" suffixOverrides=","> 
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },		
+		</trim>
+		where 
+		SEQ = #{seq, jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+		select	<include refid="TM_CMP_SEQ_TABLE_FIELD" />		
+		from TM_CMP_SEQ
+		where 
+		SEQ = #{seq, jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+		select <include refid="TM_CMP_SEQ_TABLE_FIELD" />		
+ 		from TM_CMP_SEQ
+		where 1=1 
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="seq != null and seq != ''  " >
+			and SEQ = #{seq,jdbcType=INTEGER }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>	
+	<select id="loadKeyList" resultType="int" parameterType="map" >
+		select  ID 		
+ 		from TM_CMP_SEQ
+		where 1=1 
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="seq != null and seq != ''  " >
+			and SEQ = #{seq,jdbcType=INTEGER }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>
+</mapper>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.cmp.infrastructure.mapping.TmCmpPrmMapper">
+	<resultMap id="BaseResultMap" type="com.jjb.cmp.infrastructure.TmCmpPrm" >
+		<id column="ID" property="id" jdbcType="INTEGER"/>
+		<result column="ORG" property="org" jdbcType="VARCHAR" />
+		<result column="CONS_SYS_ID" property="consSysId" jdbcType="VARCHAR" />
+		<result column="SUP_TYPE" property="supType" jdbcType="VARCHAR" />
+		<result column="SUB_TYPE" property="subType" jdbcType="VARCHAR" />
+		<result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="JPA_VERSION" property="jpaVersion" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="TM_CMP_PRM_TABLE_FIELD">ID,ORG,CONS_SYS_ID,SUP_TYPE,SUB_TYPE,UPDATE_USER,UPDATE_DATE,JPA_VERSION</sql>
+
+	<sql id="TABLE_SEQUENCE">SEQ_TM_CMP_PRM_ID.nextval</sql>
+
+	<delete id="deleteByPrimaryKey" parameterType="map" >
+		delete from TM_CMP_PRM
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jjb.cmp.infrastructure.TmCmpPrm" >
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select <include refid="TABLE_SEQUENCE" /> from dual
+		</selectKey>
+		insert into TM_CMP_PRM ( <include refid="TM_CMP_PRM_TABLE_FIELD" /> )
+		values (  #{id,jdbcType=INTEGER } , #{org,jdbcType=VARCHAR } , #{consSysId,jdbcType=VARCHAR } ,
+			 #{supType,jdbcType=VARCHAR } , #{subType,jdbcType=VARCHAR } , #{updateUser,jdbcType=VARCHAR } , #{updateDate,jdbcType=TIMESTAMP } ,
+			 #{jpaVersion,jdbcType=INTEGER } 
+	)
+	</insert>
+	<update id="updateNotNullByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpPrm">
+		update TM_CMP_PRM 
+		<trim prefix="set" suffixOverrides=","> 
+		<if test="consSysId != null and consSysId != ''  " >
+			CONS_SYS_ID =#{consSysId,jdbcType=VARCHAR },
+		</if>
+		<if test="supType != null and supType != ''  " >
+			SUP_TYPE =#{supType,jdbcType=VARCHAR },
+		</if>
+		<if test="subType != null and subType != ''  " >
+			SUB_TYPE =#{subType,jdbcType=VARCHAR },
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },
+		</if>
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpPrm">
+		update TM_CMP_PRM 
+		<trim prefix="set" suffixOverrides=","> 
+			CONS_SYS_ID =#{consSysId,jdbcType=VARCHAR },		
+			SUP_TYPE =#{supType,jdbcType=VARCHAR },		
+			SUB_TYPE =#{subType,jdbcType=VARCHAR },		
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },		
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },		
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },		
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+		select	<include refid="TM_CMP_PRM_TABLE_FIELD" />		
+		from TM_CMP_PRM
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+		select <include refid="TM_CMP_PRM_TABLE_FIELD" />		
+ 		from TM_CMP_PRM
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="consSysId != null and consSysId != ''  " >
+			and CONS_SYS_ID = #{consSysId,jdbcType=VARCHAR }
+		</if>
+		<if test="supType != null and supType != ''  " >
+			and SUP_TYPE = #{supType,jdbcType=VARCHAR }
+		</if>
+		<if test="subType != null and subType != ''  " >
+			and SUB_TYPE = #{subType,jdbcType=VARCHAR }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>	
+	<select id="loadKeyList" resultType="int" parameterType="map" >
+		select  ID 		
+ 		from TM_CMP_PRM
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="consSysId != null and consSysId != ''  " >
+			and CONS_SYS_ID = #{consSysId,jdbcType=VARCHAR }
+		</if>
+		<if test="supType != null and supType != ''  " >
+			and SUP_TYPE = #{supType,jdbcType=VARCHAR }
+		</if>
+		<if test="subType != null and subType != ''  " >
+			and SUB_TYPE = #{subType,jdbcType=VARCHAR }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>
+</mapper>

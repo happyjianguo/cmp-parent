@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+		                http://www.springframework.org/schema/context 
+		                http://www.springframework.org/schema/context/spring-context.xsd"
+	default-lazy-init="true">
+
+	<description>Spring 容器 配置</description>
+	<!-- 占位符 -->
+	<bean id="env" class="com.jjb.unicorn.facility.config.UnicornEnvironmentFactoryBean">
+		<property name="locations"
+			value="#{systemProperties['env.files'] ?: 'classpath:/conf/*.properties'}" />
+	</bean>
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="UTF-8" p:maxUploadSize="5400000">
+	</bean>
+	<!-- 开启自动注入 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.jjb" />
+	<context:component-scan base-package="com.jjb.cmp" />
+	<context:component-scan base-package="com.jjb.unicorn" />
+	<context:component-scan base-package="com.jjb.acl.access.service" />
+	
+	<!-- <import resource="classpath:spring-unicorn-mybatis.xml" /> -->
+	
+	<import resource="classpath:/gmp-sdk-mq-context.xml" />
+	<import resource="classpath*:spring-access.xml" />
+	<import resource="classpath*:spring-acl-biz.xml" />
+	<import resource="classpath*:spring-cmp-biz.xml" />
+	<!-- <import resource="classpath:log4jConfiguration-context.xml"/> -->
+	<import resource="classpath*:log4jConfiguration-context.xml"/>
+	
+</beans>

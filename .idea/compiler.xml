@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cmp-app" />
+        <module name="cmp-biz" />
+        <module name="cmp-facility" />
+        <module name="cmp-fastfds" />
+        <module name="cmp-mybatis-infrastructure" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cmp-app" target="1.5" />
+      <module name="cmp-biz" target="1.5" />
+      <module name="cmp-facility" target="1.5" />
+      <module name="cmp-fastfds" target="1.5" />
+      <module name="cmp-mybatis-infrastructure" target="1.5" />
+      <module name="cmp-parent" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

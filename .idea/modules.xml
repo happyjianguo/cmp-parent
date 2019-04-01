@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cmp-app/cmp-app.iml" filepath="$PROJECT_DIR$/cmp-app/cmp-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmp-biz/cmp-biz.iml" filepath="$PROJECT_DIR$/cmp-biz/cmp-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmp-facility/cmp-facility.iml" filepath="$PROJECT_DIR$/cmp-facility/cmp-facility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmp-fastdfs/cmp-fastfds.iml" filepath="$PROJECT_DIR$/cmp-fastdfs/cmp-fastfds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmp-mybatis-infrastructure/cmp-mybatis-infrastructure.iml" filepath="$PROJECT_DIR$/cmp-mybatis-infrastructure/cmp-mybatis-infrastructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cmp-parent.iml" filepath="$PROJECT_DIR$/cmp-parent.iml" />
+    </modules>
+  </component>
+</project>

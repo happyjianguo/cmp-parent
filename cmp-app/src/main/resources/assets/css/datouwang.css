@@ -1,0 +1,27 @@
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+a, a:link, a:visited{color:#006699;text-decoration:none;}
+a:hover{color:#ff7031;}
+body{background-color:#000;font:12px/180% Arial, Helvetica, sans-serif, "������";}
+
+.HS10, .HS15{overflow:hidden;clear:both;}
+.HS10{height:5px;}
+.HS15{height:15px;}
+.Clearer{display:block;clear:both;font-size:1px;line-height:1px;margin:0;padding:0;}
+.FlLeft{float:left;}
+.FlRight{float:right;}
+/*�õ�Ƭ���򱳾�*/
+/*�����ҳ��*/
+.Title h1{display:inline;}
+.Title .Counter{color:#666;}
+.Title .CounterCurrent{color:#C00;font-size:20px;font-weight:bold;}
+/*��ɫ�ָ���*/
+.SpaceLine{border-bottom:1px solid #333;height:1px;font-size:1px;}
+/*��ͼչʾ����*/
+#OriginalPic{width:930px;overflow:hidden;position:relative;font-size:12px;}
+#OriginalPic img{display:block;margin:0 auto;}
+/*�������*/
+/*СͼԤ���ͻ���*/
+.Summary{line-height:20px;display:block;width:100px;margin-right:10px;color:#999;overflow:hidden;background-color:#333;padding:10px;}
+.More{text-align:right;color:#666;line-height:40px;height:40px;font-size:12px;display:block;}        
+#ThumbPic img{border:3px solid #666;cursor:pointer;background-color:#666;margin:0 4px;width:130px;height:80px;display:block;}

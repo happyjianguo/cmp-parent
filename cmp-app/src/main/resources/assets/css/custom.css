@@ -1,0 +1,36 @@
+#right {
+	float: left;
+	width: 450px;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+
+.jc_coords {
+	margin-top: 30px;
+	display: block;
+}
+
+#inputfield {
+	margin-top: 30px;
+}
+.viewer {
+	height: 842px;
+	width: 620px;
+	cursor: grab;
+	margin: 5px auto;
+	overflow: hidden;
+	/*keep map contents from spilling over if JS is disabled*/
+	border: 1px solid black;
+	position: relative;
+}
+
+
+.flexdiv {
+	background-color: #FFFF00;
+	opacity: 0.4;
+	filter: alpha(Opacity = 40);
+	z-index: 100;
+}
+/*----------------------------------------- contextView.ftl css 样式  -------------------------------------------------------*/
+
+

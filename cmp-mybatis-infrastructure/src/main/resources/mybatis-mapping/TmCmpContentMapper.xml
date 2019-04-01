@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.cmp.infrastructure.mapping.TmCmpContentMapper">
+	<resultMap id="BaseResultMap" type="com.jjb.cmp.infrastructure.TmCmpContent" >
+		<id column="ID" property="id" jdbcType="INTEGER"/>
+		<result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+		<result column="CONS_SYS_ID" property="consSysId" jdbcType="VARCHAR" />
+		<result column="SUP_TYPE" property="supType" jdbcType="VARCHAR" />
+		<result column="SUP_TYPE_DESC" property="supTypeDesc" jdbcType="VARCHAR" />
+		<result column="SUB_TYPE" property="subType" jdbcType="VARCHAR" />
+		<result column="SUB_TYPE_DESC" property="subTypeDesc" jdbcType="VARCHAR" />
+		<result column="BRANCH" property="branch" jdbcType="VARCHAR" />
+		<result column="CONT_FMT" property="contFmt" jdbcType="VARCHAR" />
+		<result column="CONT_SORT" property="contSort" jdbcType="INTEGER" />
+		<result column="CONT_REL_PATH" property="contRelPath" jdbcType="VARCHAR" />
+		<result column="CONT_ABS_PATH" property="contAbsPath" jdbcType="VARCHAR" />
+		<result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+		<result column="JPA_VERSION" property="jpaVersion" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="TM_CMP_CONTENT_TABLE_FIELD">ID,BATCH_NO,CONS_SYS_ID,SUP_TYPE,SUP_TYPE_DESC,SUB_TYPE,SUB_TYPE_DESC,BRANCH,CONT_FMT,CONT_SORT,CONT_REL_PATH,CONT_ABS_PATH,CONT_STATUS,UPDATE_DATE,UPDATE_USER,JPA_VERSION</sql>
+
+	<sql id="TABLE_SEQUENCE">SEQ_TM_CMP_CONTENT_ID.nextval</sql>
+
+	<delete id="deleteByPrimaryKey" parameterType="map" >
+		delete from TM_CMP_CONTENT
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jjb.cmp.infrastructure.TmCmpContent" >
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select <include refid="TABLE_SEQUENCE" /> from dual
+		</selectKey>
+		insert into TM_CMP_CONTENT ( <include refid="TM_CMP_CONTENT_TABLE_FIELD" /> )
+		values (  #{id,jdbcType=INTEGER } , #{batchNo,jdbcType=VARCHAR } , #{consSysId,jdbcType=VARCHAR } ,
+			 #{supType,jdbcType=VARCHAR } , #{supTypeDesc,jdbcType=VARCHAR } , #{subType,jdbcType=VARCHAR } , #{subTypeDesc,jdbcType=VARCHAR } ,
+			 #{branch,jdbcType=VARCHAR } , #{contFmt,jdbcType=VARCHAR } , #{contSort,jdbcType=INTEGER } , #{contRelPath,jdbcType=VARCHAR } ,
+			 #{contAbsPath,jdbcType=VARCHAR } , #{contStatus,jdbcType=VARCHAR } , #{updateDate,jdbcType=TIMESTAMP } , #{updateUser,jdbcType=VARCHAR } ,
+			 #{jpaVersion,jdbcType=INTEGER } 
+	)
+	</insert>
+	<update id="updateNotNullByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpContent">
+		update TM_CMP_CONTENT 
+		<trim prefix="set" suffixOverrides=","> 
+		<if test="batchNo != null and batchNo != ''  " >
+			BATCH_NO =#{batchNo,jdbcType=VARCHAR },
+		</if>
+		<if test="consSysId != null and consSysId != ''  " >
+			CONS_SYS_ID =#{consSysId,jdbcType=VARCHAR },
+		</if>
+		<if test="supType != null and supType != ''  " >
+			SUP_TYPE =#{supType,jdbcType=VARCHAR },
+		</if>
+		<if test="supTypeDesc != null and supTypeDesc != ''  " >
+			SUP_TYPE_DESC =#{supTypeDesc,jdbcType=VARCHAR },
+		</if>
+		<if test="subType != null and subType != ''  " >
+			SUB_TYPE =#{subType,jdbcType=VARCHAR },
+		</if>
+		<if test="subTypeDesc != null and subTypeDesc != ''  " >
+			SUB_TYPE_DESC =#{subTypeDesc,jdbcType=VARCHAR },
+		</if>
+		<if test="branch != null and branch != ''  " >
+			BRANCH =#{branch,jdbcType=VARCHAR },
+		</if>
+		<if test="contFmt != null and contFmt != ''  " >
+			CONT_FMT =#{contFmt,jdbcType=VARCHAR },
+		</if>
+		<if test="contSort != null and contSort != ''  " >
+			CONT_SORT =#{contSort,jdbcType=INTEGER },
+		</if>
+		<if test="contRelPath != null and contRelPath != ''  " >
+			CONT_REL_PATH =#{contRelPath,jdbcType=VARCHAR },
+		</if>
+		<if test="contAbsPath != null and contAbsPath != ''  " >
+			CONT_ABS_PATH =#{contAbsPath,jdbcType=VARCHAR },
+		</if>
+		<if test="contStatus != null and contStatus != ''  " >
+			CONT_STATUS =#{contStatus,jdbcType=VARCHAR },
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },
+		</if>
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpContent">
+		update TM_CMP_CONTENT 
+		<trim prefix="set" suffixOverrides=","> 
+			BATCH_NO =#{batchNo,jdbcType=VARCHAR },		
+			CONS_SYS_ID =#{consSysId,jdbcType=VARCHAR },		
+			SUP_TYPE =#{supType,jdbcType=VARCHAR },		
+			SUP_TYPE_DESC =#{supTypeDesc,jdbcType=VARCHAR },		
+			SUB_TYPE =#{subType,jdbcType=VARCHAR },		
+			SUB_TYPE_DESC =#{subTypeDesc,jdbcType=VARCHAR },		
+			BRANCH =#{branch,jdbcType=VARCHAR },		
+			CONT_FMT =#{contFmt,jdbcType=VARCHAR },		
+			CONT_SORT =#{contSort,jdbcType=INTEGER },		
+			CONT_REL_PATH =#{contRelPath,jdbcType=VARCHAR },		
+			CONT_ABS_PATH =#{contAbsPath,jdbcType=VARCHAR },		
+			CONT_STATUS =#{contStatus,jdbcType=VARCHAR },		
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },		
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },		
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },		
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+		select	<include refid="TM_CMP_CONTENT_TABLE_FIELD" />		
+		from TM_CMP_CONTENT
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+		select <include refid="TM_CMP_CONTENT_TABLE_FIELD" />		
+ 		from TM_CMP_CONTENT
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="batchNo != null and batchNo != ''  " >
+			and BATCH_NO = #{batchNo,jdbcType=VARCHAR }
+		</if>
+		<if test="consSysId != null and consSysId != ''  " >
+			and CONS_SYS_ID = #{consSysId,jdbcType=VARCHAR }
+		</if>
+		<if test="supType != null and supType != ''  " >
+			and SUP_TYPE = #{supType,jdbcType=VARCHAR }
+		</if>
+		<if test="supTypeDesc != null and supTypeDesc != ''  " >
+			and SUP_TYPE_DESC = #{supTypeDesc,jdbcType=VARCHAR }
+		</if>
+		<if test="subType != null and subType != ''  " >
+			and SUB_TYPE = #{subType,jdbcType=VARCHAR }
+		</if>
+		<if test="subTypeDesc != null and subTypeDesc != ''  " >
+			and SUB_TYPE_DESC = #{subTypeDesc,jdbcType=VARCHAR }
+		</if>
+		<if test="branch != null and branch != ''  " >
+			and BRANCH = #{branch,jdbcType=VARCHAR }
+		</if>
+		<if test="contFmt != null and contFmt != ''  " >
+			and CONT_FMT = #{contFmt,jdbcType=VARCHAR }
+		</if>
+		<if test="contSort != null and contSort != ''  " >
+			and CONT_SORT = #{contSort,jdbcType=INTEGER }
+		</if>
+		<if test="contRelPath != null and contRelPath != ''  " >
+			and CONT_REL_PATH = #{contRelPath,jdbcType=VARCHAR }
+		</if>
+		<if test="contAbsPath != null and contAbsPath != ''  " >
+			and CONT_ABS_PATH = #{contAbsPath,jdbcType=VARCHAR }
+		</if>
+		<if test="contStatus != null and contStatus != ''  " >
+			and CONT_STATUS = #{contStatus,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>	
+	<select id="loadKeyList" resultType="int" parameterType="map" >
+		select  ID 		
+ 		from TM_CMP_CONTENT
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="batchNo != null and batchNo != ''  " >
+			and BATCH_NO = #{batchNo,jdbcType=VARCHAR }
+		</if>
+		<if test="consSysId != null and consSysId != ''  " >
+			and CONS_SYS_ID = #{consSysId,jdbcType=VARCHAR }
+		</if>
+		<if test="supType != null and supType != ''  " >
+			and SUP_TYPE = #{supType,jdbcType=VARCHAR }
+		</if>
+		<if test="supTypeDesc != null and supTypeDesc != ''  " >
+			and SUP_TYPE_DESC = #{supTypeDesc,jdbcType=VARCHAR }
+		</if>
+		<if test="subType != null and subType != ''  " >
+			and SUB_TYPE = #{subType,jdbcType=VARCHAR }
+		</if>
+		<if test="subTypeDesc != null and subTypeDesc != ''  " >
+			and SUB_TYPE_DESC = #{subTypeDesc,jdbcType=VARCHAR }
+		</if>
+		<if test="branch != null and branch != ''  " >
+			and BRANCH = #{branch,jdbcType=VARCHAR }
+		</if>
+		<if test="contFmt != null and contFmt != ''  " >
+			and CONT_FMT = #{contFmt,jdbcType=VARCHAR }
+		</if>
+		<if test="contSort != null and contSort != ''  " >
+			and CONT_SORT = #{contSort,jdbcType=INTEGER }
+		</if>
+		<if test="contRelPath != null and contRelPath != ''  " >
+			and CONT_REL_PATH = #{contRelPath,jdbcType=VARCHAR }
+		</if>
+		<if test="contAbsPath != null and contAbsPath != ''  " >
+			and CONT_ABS_PATH = #{contAbsPath,jdbcType=VARCHAR }
+		</if>
+		<if test="contStatus != null and contStatus != ''  " >
+			and CONT_STATUS = #{contStatus,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>
+</mapper>

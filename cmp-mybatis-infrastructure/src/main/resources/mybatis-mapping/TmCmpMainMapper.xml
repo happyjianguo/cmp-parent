@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.cmp.infrastructure.mapping.TmCmpMainMapper">
+	<resultMap id="BaseResultMap" type="com.jjb.cmp.infrastructure.TmCmpMain" >
+		<id column="ID" property="id" jdbcType="INTEGER"/>
+		<result column="ORG" property="org" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+		<result column="ID_TYPE" property="idType" jdbcType="VARCHAR" />
+		<result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+		<result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+		<result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+		<result column="JPA_VERSION" property="jpaVersion" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="TM_CMP_MAIN_TABLE_FIELD">ID,ORG,NAME,ID_NO,ID_TYPE,BATCH_NO,UPDATE_USER,UPDATE_DATE,JPA_VERSION</sql>
+
+	<sql id="TABLE_SEQUENCE">SEQ_TM_CMP_MAIN_ID.nextval</sql>
+
+	<delete id="deleteByPrimaryKey" parameterType="map" >
+		delete from TM_CMP_MAIN
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.jjb.cmp.infrastructure.TmCmpMain" >
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select <include refid="TABLE_SEQUENCE" /> from dual
+		</selectKey>
+		insert into TM_CMP_MAIN ( <include refid="TM_CMP_MAIN_TABLE_FIELD" /> )
+		values (  #{id,jdbcType=INTEGER } , #{org,jdbcType=VARCHAR } , #{name,jdbcType=VARCHAR } ,
+			 #{idNo,jdbcType=VARCHAR } , #{idType,jdbcType=VARCHAR } , #{batchNo,jdbcType=VARCHAR } , #{updateUser,jdbcType=VARCHAR } ,
+			 #{updateDate,jdbcType=TIMESTAMP } , #{jpaVersion,jdbcType=INTEGER } 
+	)
+	</insert>
+	<update id="updateNotNullByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpMain">
+		update TM_CMP_MAIN 
+		<trim prefix="set" suffixOverrides=","> 
+		<if test="name != null and name != ''  " >
+			NAME =#{name,jdbcType=VARCHAR },
+		</if>
+		<if test="idNo != null and idNo != ''  " >
+			ID_NO =#{idNo,jdbcType=VARCHAR },
+		</if>
+		<if test="idType != null and idType != ''  " >
+			ID_TYPE =#{idType,jdbcType=VARCHAR },
+		</if>
+		<if test="batchNo != null and batchNo != ''  " >
+			BATCH_NO =#{batchNo,jdbcType=VARCHAR },
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },
+		</if>
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.jjb.cmp.infrastructure.TmCmpMain">
+		update TM_CMP_MAIN 
+		<trim prefix="set" suffixOverrides=","> 
+			NAME =#{name,jdbcType=VARCHAR },		
+			ID_NO =#{idNo,jdbcType=VARCHAR },		
+			ID_TYPE =#{idType,jdbcType=VARCHAR },		
+			BATCH_NO =#{batchNo,jdbcType=VARCHAR },		
+			UPDATE_USER =#{updateUser,jdbcType=VARCHAR },		
+			UPDATE_DATE =#{updateDate,jdbcType=TIMESTAMP },		
+			JPA_VERSION =#{jpaVersion,jdbcType=INTEGER },		
+		</trim>
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+		select	<include refid="TM_CMP_MAIN_TABLE_FIELD" />		
+		from TM_CMP_MAIN
+		where 
+		ID = #{id, jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+		select <include refid="TM_CMP_MAIN_TABLE_FIELD" />		
+ 		from TM_CMP_MAIN
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="name != null and name != ''  " >
+			and NAME = #{name,jdbcType=VARCHAR }
+		</if>
+		<if test="idNo != null and idNo != ''  " >
+			and ID_NO = #{idNo,jdbcType=VARCHAR }
+		</if>
+		<if test="idType != null and idType != ''  " >
+			and ID_TYPE = #{idType,jdbcType=VARCHAR }
+		</if>
+		<if test="batchNo != null and batchNo != ''  " >
+			and BATCH_NO = #{batchNo,jdbcType=VARCHAR }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>	
+	<select id="loadKeyList" resultType="int" parameterType="map" >
+		select  ID 		
+ 		from TM_CMP_MAIN
+		where 1=1 
+		<if test="id != null and id != ''  " >
+			and ID = #{id,jdbcType=INTEGER }
+		</if>
+		<if test="org != null and org != ''  " >
+			and ORG = #{org,jdbcType=VARCHAR }
+		</if>
+		<if test="name != null and name != ''  " >
+			and NAME = #{name,jdbcType=VARCHAR }
+		</if>
+		<if test="idNo != null and idNo != ''  " >
+			and ID_NO = #{idNo,jdbcType=VARCHAR }
+		</if>
+		<if test="idType != null and idType != ''  " >
+			and ID_TYPE = #{idType,jdbcType=VARCHAR }
+		</if>
+		<if test="batchNo != null and batchNo != ''  " >
+			and BATCH_NO = #{batchNo,jdbcType=VARCHAR }
+		</if>
+		<if test="updateUser != null and updateUser != ''  " >
+			and UPDATE_USER = #{updateUser,jdbcType=VARCHAR }
+		</if>
+		<if test="updateDate != null and updateDate != ''  " >
+			and UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP }
+		</if>
+		<if test="jpaVersion != null and jpaVersion != ''  " >
+			and JPA_VERSION = #{jpaVersion,jdbcType=INTEGER }
+		</if>
+
+		<if test="_SORT_NAME != null and _SORT_NAME != ''  " >
+			<if test="_SORT_ORDER != null and _SORT_ORDER != ''  " >
+				order by ${_SORT_NAME} ${_SORT_ORDER} 
+			</if>
+		</if>
+
+	</select>
+</mapper>

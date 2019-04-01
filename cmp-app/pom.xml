@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jjb.cmp</groupId>
+		<artifactId>cmp-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>cmp-app</artifactId>
+	<packaging>war</packaging>
+	<name>cmp-app</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.jjb.unicorn</groupId>
+			<artifactId>unicorn-web-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.acl</groupId>
+			<artifactId>acl-access</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.acl</groupId>
+			<artifactId>acl-mvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.cmp</groupId>
+			<artifactId>cmp-mybatis-infrastructure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.cmp</groupId>
+			<artifactId>cmp-facility</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.cmp</groupId>
+			<artifactId>cmp-biz</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jjb.cmp</groupId>
+			<artifactId>cmp-fastfds</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+		</dependency>
+		<!-- 文件上传 -->
+		
+		
+	</dependencies>
+	<build>
+	</build>
+</project>

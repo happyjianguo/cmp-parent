@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jjb.unicorn</groupId>
+		<artifactId>unicorn-parent</artifactId>
+		<version>1.0.2-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.jjb.cmp</groupId>
+	<artifactId>cmp-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>cmp - 内容管理平台</name>
+
+
+	<modules>
+		<module>cmp-mybatis-infrastructure</module>
+		<module>cmp-facility</module>
+		<module>cmp-biz</module>
+		<module>cmp-app</module>
+		<module>cmp-fastdfs</module>
+	</modules>
+
+	<scm>
+		<connection>scm:svn:https://10.109.2.212/svn/jjb-xyk/code_src/cmp/1.0.0</connection>
+		<developerConnection>scm:svn:https://10.109.2.212/svn/jjb-xyk/code_src/cmp/1.0.0</developerConnection>
+	</scm>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<unicorn.version>1.1.0-SNAPSHOT</unicorn.version>
+		<acl.version>1.1.0-SNAPSHOT</acl.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- cmp依赖 -->
+			<dependency>
+				<groupId>com.jjb.cmp</groupId>
+				<artifactId>cmp-mybatis-infrastructure</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.cmp</groupId>
+				<artifactId>cmp-facility</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.cmp</groupId>
+				<artifactId>cmp-biz</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<!-- <dependency>
+				<groupId>com.jjb.cmp</groupId>
+				<artifactId>cmp-fastdfs</artifactId>
+				<version>${project.version}</version>
+			</dependency> -->
+			<!-- unicorn、acl系统依赖 -->
+			<dependency>
+				<groupId>com.jjb.unicorn</groupId>
+				<artifactId>unicorn-facility</artifactId>
+				<version>${unicorn.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.unicorn</groupId>
+				<artifactId>unicorn-web-common</artifactId>
+				<version>${unicorn.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.unicorn</groupId>
+				<artifactId>unicorn-cache</artifactId>
+				<version>${unicorn.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.acl</groupId>
+				<artifactId>acl-access</artifactId>
+				<version>${acl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.acl</groupId>
+				<artifactId>acl-biz</artifactId>
+				<version>${acl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.acl</groupId>
+				<artifactId>acl-infrastructure</artifactId>
+				<version>${acl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.acl</groupId>
+				<artifactId>acl-mvc</artifactId>
+				<version>${acl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jjb.acl</groupId>
+				<artifactId>acl-gmp-sdk</artifactId>
+				<version>${acl.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- 所有的项目都要用到的依赖项 -->
+	<dependencies>
+	</dependencies>
+</project>

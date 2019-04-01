@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jjb.cmp.biz.TmCmpContentDtoMapper">
+    <resultMap id="BaseResultMap"
+               type="com.jjb.cmp.dto.TmCmpContentDto">
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="ID_TYPE" property="idType" jdbcType="VARCHAR" />
+        <result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+        <result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+        <result column="CONS_SYS_ID" property="consSysId" jdbcType="VARCHAR" />
+        <result column="SUP_TYPE" property="supType" jdbcType="VARCHAR" />
+        <result column="SUP_TYPE_DESC" property="supTypeDesc" jdbcType="VARCHAR" />
+        <result column="SUB_TYPE" property="subType" jdbcType="VARCHAR" />
+        <result column="SUB_TYPE_DESC" property="subTypeDesc" jdbcType="VARCHAR" />
+        <result column="BRANCH" property="branch" jdbcType="VARCHAR" />
+        <result column="CONT_FMT" property="contFmt" jdbcType="VARCHAR" />
+        <result column="CONT_SORT" property="contSort" jdbcType="VARCHAR" />
+        <result column="CONT_REL_PATH" property="contRelPath" jdbcType="VARCHAR" />
+        <result column="CONT_ABS_PATH" property="contAbsPath" jdbcType="VARCHAR" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+        <result column="CONT_STATUS" property="contStatus" jdbcType="VARCHAR" />
+
+
+    </resultMap>
+    <!-- 查询影像信息列表 -->
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="map">
+        SELECT m.NAME,m.BATCH_NO,m.UPDATE_DATE,m.UPDATE_USER,m.ID_NO
+        FROM TM_CMP_MAIN m
+        WHERE  1=1
+        <if test="name != null and name != '' ">
+            and m.NAME LIKE CONCAT(CONCAT('%',#{name,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="batchNo != null and batchNo != '' ">
+            and m.BATCH_NO LIKE CONCAT(CONCAT('%',#{batchNo,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="idNo != null and idNo != '' ">
+            and m.ID_NO LIKE CONCAT(CONCAT('%',#{idNo,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="updateUser != null and updateUser != '' ">
+            and m.UPDATE_USER LIKE CONCAT(CONCAT('%',#{updateUser,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="_SORT_ORDER != null and _SORT_ORDER != ''  and  _SORT_NAME !=null  and  _SORT_NAME !=''" >
+                ORDER BY  ${_SORT_NAME} ${_SORT_ORDER}
+        </if>
+        <if test="_SORT_ORDER == null or _SORT_ORDER  == ''  or  _SORT_NAME ==null  or  _SORT_NAME ==''" >
+            ORDER BY    m.NAME   desc
+        </if>
+    </select>
+
+    <!-- 查询影像信息列表 -->
+    <select id="quyContentByParam" resultMap="BaseResultMap" parameterType="map">
+        SELECT M.NAME,M.ID_NO,M.BATCH_NO,C.CONS_SYS_ID,C.SUP_TYPE,C.Sup_Type_Desc,C.SUB_TYPE,C.SUB_TYPE_DESC ,
+            C.CONT_FMT,C.CONT_SORT,C.CONT_REL_PATH,C.CONT_ABS_PATH, C.BRANCH,C.UPDATE_DATE,C.UPDATE_USER
+        FROM TM_CMP_MAIN m ,TM_CMP_CONTENT C
+        WHERE M.BATCH_NO=C.BATCH_NO
+        <if test="name != null and name != '' ">
+            and m.NAME LIKE CONCAT(CONCAT('%',#{name,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="batchNo != null and batchNo != '' ">
+            and m.BATCH_NO = #{batchNo,jdbcType=VARCHAR }
+        </if>
+        <if test="idType != null and idType!= '' ">
+            and m.ID_TYPE =#{idType,jdbcType=VARCHAR }
+        </if>
+        <if test="idNo != null and idNo != '' ">
+            and m.ID_NO LIKE CONCAT(CONCAT('%',#{idNo,jdbcType=VARCHAR }),'%')
+        </if>
+        <if test="contStatus != null and contStatus != '' ">
+            and c.CONT_STATUS =#{contStatus,jdbcType=VARCHAR }
+        </if>
+        <if test="updateUser != null and updateUser != '' ">
+            and m.UPDATE_USER =#{updateUser,jdbcType=VARCHAR }
+        </if>
+        order by c.update_date ASC
+    </select>
+
+</mapper>
